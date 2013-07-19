@@ -1,0 +1,56 @@
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.out
+
+
+## Java Specific
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+
+## Scala Specific
+*.class
+*.log
+
+# sbt specific
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+
+
+## IntelliJ Specific
+*.eml
+*.iml
+*.ipr
+*.iws
+.*.sw?
+.idea/
+
+
+## Eclipse specific
+.metadata
+jrebel.lic
+.settings
+.classpath
+.project
+
+
+## SBT Specific
+# recommended: http://code.google.com/p/simple-build-tool/wiki/Setup#Version_Control
+
+target/
+lib_managed/
+src_managed/
+project/boot/
