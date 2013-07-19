@@ -1,0 +1,12 @@
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+.picture {
+    display: block;
+    cursor: pointer;
+    background: #000;
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+}

@@ -1,0 +1,11 @@
+.validErrors label.error {
+    margin-left: 10px;
+    width: auto;
+    display: inline;
+}
+
+.validErrors input.error, label.error {
+    color: red;
+    border-color: red;
+    font-style: italic
+}

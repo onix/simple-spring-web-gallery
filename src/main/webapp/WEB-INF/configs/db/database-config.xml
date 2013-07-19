@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="propertyResolver" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="/WEB-INF/configs/db/database.properties"/>
+    </bean>
+
+    <bean class="java.net.URI" id="dbUrl">
+        <constructor-arg value="${DATABASE_URL}"/>
+    </bean>
+
+    <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+        <property name="driverClassName" value="${database.driverClassName}"/>
+        <!-- Next string is connection string used for Heroku database interconnection. Uncomment it and remove present active string. Don't forget about config string in database.properties! -->
+        <!--<property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() + '?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory' }"/> -->
+        <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
+        <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+        <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+    </bean>
+
+    <bean id="userDAO" class="springWebGallery.db.jdbcDao.JdbcUserDAO">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="photoDAO" class="springWebGallery.db.jdbcDao.JdbcPhotoDAO">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="thumbnailDAO" class="springWebGallery.db.jdbcDao.JdbcThumbnailDAO">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>
